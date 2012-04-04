@@ -1,0 +1,76 @@
+<?if ($deluser){?>
+	<?=t('Ви дійсно бажаєте видалити свій профіль з сайту?')?><br><a href="/enter?del_user_id=<?=$deluser?>"> <?=t('Так - Видалити!')?></a>&nbsp;&nbsp;||&nbsp;&nbsp;
+	<a href="<?=$backURL?>"><?=t('Ні, повернутись Назад')?></a>
+<?exit;
+}?>
+
+	
+<?
+if (!$_SESSION['user_name']){
+	if ($loginusererror){?>
+		<div class="msg_content_red">
+		<span><?=t('Реєстраційні данні введені не вірно!')?></span>
+		</div>
+	<?}
+}else{?>
+<a href="/enter?out=1">Змінити користувача:</a>&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;
+<a href="/admin?useredit=<?=$_SESSION['user_id']?>">Редагувати дані користувача:</a>&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;
+<a href="/enter?deluser=<?=$_SESSION['user_id']?>">Видалити профіль з сайту:</a>
+
+
+
+<br/>
+
+<div class = "admin_user_edit">
+<fieldset>
+<?foreach ($user as $key=>$value){?>
+<?if ($key == 'img_avatar'){?>
+<img src="/images/smile_<?=$value?>" alt="<?=$value?>"/>
+<?}?>
+<label><?=$key?></label><span><?=$value?></span><br/>
+<?}?>
+</fieldset>
+</div>
+
+
+
+<br/>
+
+<?}?>
+
+
+<div class="msg_content_red">
+<span><?=$msg_user_add?></span>
+</div>
+
+<br/><hr/>
+<div class="msg_content">
+<span>Реєстрація нового користувача:</span>
+</div>
+
+<div class="user_register">
+<form method="post" action="/enter" enctype="multipart/form-data">
+<fieldset>
+	
+	
+	<label for="input_first_name">Ім'я:</label><input id="input_first_name" type="text" name="first_name"/>	<br/>
+	<label for="input_last_name">Прізвище:</label><input id="input_last_name" type="text" name="last_name"/><br/>
+	<label for="input_login">Логин:</label><input id="input_login" type="text" name="username"/>
+	<span> max lenght - 12</span>
+	<br/>
+	<label for="input_email">E-mail:</label><input id="input_email" type="text" name="email"/>
+	<span> max lenght - 30, example: ivan_taburetkin@mail.com</span>
+	<br/>
+	<label for="input_passw">Пароль:</label><input id="input_passw" type="password" name="password"/>
+	<span> max lenght - 20</span>
+	<br/>
+	<label for="input_avatar">Аватар:</label><input id="input_avatar" type="file" name="img_avatar"/>
+	<span> only JPG file</span>
+	<br/>
+	<label for="repeat_password">Повторіть пароль:</label><input id="repeat_password"  type="password" name="repassword"/><br/>
+	<input type="hidden" name="adduser" value = "ok" />
+	<label for="input_avatar">&nbsp;</label>
+	<input type="submit" value = "Зареєструватися!"/>
+</fieldset>
+</form>
+</div>

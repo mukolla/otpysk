@@ -1,0 +1,59 @@
+<?php
+
+ class Application_Models_Admin
+  {	  
+	  function getUsers($get=null)
+	  {
+
+
+		if (!$get){
+			$sql = "select * from user";
+		}else{
+			$sql = "select * from user where user_id =".$get['useredit'];;
+		}
+
+				
+		$result = mysql_query($sql)  or die(mysql_error());
+		while ($row = mysql_fetch_assoc($result))
+			{
+				$users[] = $row;
+			}
+		return $users;
+	  }
+
+
+	  function UpdateUsers($post)
+	  {
+		
+		print_r ($post);
+exit;
+//		`first_name`, `last_name`, `img_avatar`
+
+
+/*
+Array ( [user_name] => mukolla [pass] => 78d123a11478c6fe8071ea3aa66191d2 [mail] => mukolla@gmail.com [user_id] => 10 [user_status] => 0 [user_edit_ok] => ַבונודעט )
+*/
+
+
+		$sql = "UPDATE `user` SET `user_name`='".$post['user_name']."', `pass`='".$post['pass']."', `mail`='".$post['mail']."', `user_status`='".$post['user_status']."' WHERE `user_id`='".$post['user_id']."'";
+
+		$result = mysql_query($sql)  or die(mysql_error());
+
+		return $result;
+	  }
+
+	  function BanedUser($get,$status = 'ban'){
+		
+
+		$sql = "UPDATE `user` SET `user_status`='4' WHERE `user_id`='".$get['ban_user_id']."'";
+		
+		$result = mysql_query($sql)  or die(mysql_error());
+		return $result;
+	  }
+
+
+
+
+
+  } 
+?>  	
