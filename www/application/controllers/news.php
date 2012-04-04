@@ -27,8 +27,31 @@ Lib_Proc::getInstance()->GoPage(); - за замовчуванням переа�
 
 		# changed menu iitem Add news	
 		if ($post['add_news_ok']){
-			$date = $news->AddNews($post);
-			Lib_Proc::getInstance()->GoPage();
+
+		  foreach($post as $key=>$value){
+		     if (empty($value)){
+			if($key <> 'news_id')
+			$empty_in[] = $key;
+		     }
+		  }
+		  
+		  if ($empty_in){
+		    // echo "Ви не заповнили поля:".implode(", | ", $empty_in);  exit;
+	
+		     $date['title'] 		= $post['news_title'];
+		     $date['body'] 		= $post['news_body'];
+		     $date['translate_title'] 	= $post['translate_title'];
+		     $date['translate_body'] 	= $post['translate_body'];   
+
+		    
+		     $this->reedit_news=$date;
+		     $this->empty_in = implode(", | ", $empty_in);
+		     
+		  }else{
+		     $date = $news->AddNews($post);
+		     Lib_Proc::getInstance()->GoPage();		       
+		  }
+		  
 		}
 		
 		# changed Link edit news
@@ -36,7 +59,7 @@ Lib_Proc::getInstance()->GoPage(); - за замовчуванням переа�
 			if (!Lib_Proc::getInstance()->_get_user_rights('edit',$get['edit_news_id'])){
 				Lib_Proc::getInstance()->GoPage();
 			}
-			$date = $news->GetNews(1,1,$get['edit_news_id'],'full');
+			$date = $news->GetNews(1,1,$get['edit_news_id'],'edit');
 			$this->news=$date;
 		}
 		

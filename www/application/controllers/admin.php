@@ -18,9 +18,7 @@
 					$this->msg = "Даний користувач не є адміном!";
 				}
 			}
-		
-		$adminmodels = new Application_Models_Admin;
-		
+
 		$userdb = new Application_Models_userdb;
 
 		
@@ -54,7 +52,6 @@
 
 		if ($post['user_edit_ok']) // в формі редагування нажав SAVE
 		{
-			
 			# якщо не адмін то залишемоо змінну $post['user_status'] такою як вона була раніше
 			if (!Lib_Proc::getInstance()->_get_user_rights('admin')){
 					$post['user_status'] = $_SESSION['user_status'];

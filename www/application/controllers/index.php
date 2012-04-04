@@ -11,13 +11,12 @@
 		if (isset($get['lang'])){
 			switch ($get['lang']) {
 				case 'ua':
-					$_SESSION['lang']='ua';
+					unset($_SESSION['lang']);
 				    break;
 				case 'en':
 					$_SESSION['lang']='en';;
 				    break;
 			}
-		
 		}
   
 		$models = new Application_Models_News;
@@ -41,7 +40,6 @@
 # де	$a,$b - параметри MySQL LIMIT
 #		$c - id новини яку необхідно вивести
 #######################################################
-
 		$this->News=$News;
 
 	  }

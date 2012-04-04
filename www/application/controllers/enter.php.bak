@@ -5,8 +5,6 @@
 	 {
   		 $post = Lib_Proc::getInstance()->ClearArrayDate($_POST);
 		 $get = Lib_Proc::getInstance()->ClearArrayDate($_GET);
-
-		 $userdb = new Application_Models_userdb;
 	
 		//если пришли данные логин и пароль, создаем модель проверки авторизации и передаем в нее данные.
 		if($post['login']||$post['pass']){		
@@ -57,7 +55,8 @@
 			}
 		}
 		
-		$date = $userdb->_get_user_db($_SESSION['user_id']);
+		$adminmodels = new Application_Models_Admin;
+		$date = $adminmodels->getUsers($_SESSION['user_id']);
 		$this->user=$date[0];
 	 
 		 
@@ -70,9 +69,10 @@
 		
 			 if (Lib_Proc::getInstance()->_get_user_rights($status = 'this_user',$news_id = null, $get['del_user_id'])){
 					
-					$userdb->_del_user_db($get['del_user_id']);
+					 $model=new Application_Models_Auth;
+					 $model->del_user($get['del_user_id']);
 					 
-					Lib_Proc::getInstance()->GoPage('/enter?out=1');
+					 Lib_Proc::getInstance()->GoPage('/enter?out=1');
 
 				}else{
 					echo $this->msg = "Видаляти можна лише свій профіль!";

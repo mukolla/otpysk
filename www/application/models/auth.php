@@ -58,14 +58,4 @@
 		}
 		return $msg;
 	  }
-
-	  function del_user($value){
-			$sql = "DELETE FROM `user` WHERE (`user_id`='".$value."') ;";
-			mysql_query($sql) or die(mysql_error());
-		return true;
-	  }
-	
-  
   } 
-
-?>  

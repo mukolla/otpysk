@@ -13,7 +13,7 @@
 
 <?exit;}?>
 
-							<!-- виведення повного тексту новини -->
+	<!-- виведення повного тексту новини -->
 <?
 if (!empty($viewnews))
 {
@@ -40,6 +40,15 @@ foreach($viewnews as $item)
 								/* форма редагування, або додавання новини*/
 if ($news){extract($news[0]); $button_name = 'edit_news_ok';}else{$button_name = 'add_news_ok';}?>
 
+<?
+if ($reedit_news){
+	extract($reedit_news);
+	$button_name = 'add_news_ok';
+	
+	echo $empty_in;
+	}
+?>
+
 <div class="addnews">
 <fieldset>
 	<div class="addnews_lang_ua">
@@ -49,20 +58,21 @@ if ($news){extract($news[0]); $button_name = 'edit_news_ok';}else{$button_name =
 			<?=t('Текст новини на Українській мові:')?><br>
 			<textarea class="body_add_edit_news" name="news_body" rows="16" cols="35"><?=$body?></textarea><br>
 			<input type="hidden" name="news_id" value="<?=$news_id?>">
-			<input type="submit" name="<?=$button_name?>" value = "<?=t('Зберегти')?>">
+			
+			
+			<div class="addnews_lang_en">
+				<?=t('Заголовок на Англійській мові:')?><br>
+				<input class="title_add_edit_news" type="text" name="translate_title" value="<?=$translate_title?>"><br><br>
+				<?=t('Текст новини на Англійській мові:')?><br>
+				<textarea class="body_add_edit_news" name="translate_body" rows="16" cols="35"><?=$translate_body?></textarea><br>
+			</div>
+			
+		<center><input type="submit" name="<?=$button_name?>" value = "<?=t('Зберегти')?>"></center>
+			
 		</form>
 	</div>
 
-	<div class="addnews_lang_en">
-		<form class = "form_add_edit_news" method=post action="/news">
-			<?=t('Заголовок на Англійській мові:')?><br>
-			<input class="title_add_edit_news" type="text" name="news_title" value="<?=$title?>"><br><br>
-			<?=t('Текст новини на Англійській мові:')?><br>
-			<textarea class="body_add_edit_news" name="news_body" rows="16" cols="35"><?=$body?></textarea><br>
-			<input type="hidden" name="news_id" value="<?=$news_id?>">
-			<input type="submit" name="<?=$button_name?>" value = "<?=t('Зберегти')?>">
-		</form>
-	</div>
+	
 </fieldset>
 </div>
 
