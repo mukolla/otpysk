@@ -3,6 +3,14 @@
 require_once "./config.php";
 require_once "./languages.php";
 
+function debag($v=null){
+	if ($v){
+		echo "<PRE>".print_r($v,true)."</PRE>";
+		exit;
+	}
+	
+}
+
 
 $router=new Lib_Application; // цей об'єкт буде шукати всі інші "контроллери"
 $member=$router->Run();

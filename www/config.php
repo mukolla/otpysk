@@ -20,7 +20,6 @@ Error_Reporting(E_ALL & ~E_NOTICE);
  define('COUNT_CHR_NEWS_PREVIEW', '250');
  define('HELP_MSG_FOR_ADMIN', ' user status: 0 - admin; 1 - user; 2 - publicer; 4 - BANED user;');
  define('CAUNT_NEWS_PAGES', '3'); 	//кількість новин, що будуть відображатись на головній сторінці
- define('SORTNEWS', 'desc'); 	    //сортування новин, два типи: (asc|desc)
  define('HOST', 'localhost'); 		//сервер
  define('USER', 'root'); 			//пользователь
  define('PASSWORD', ''); 			//пароль

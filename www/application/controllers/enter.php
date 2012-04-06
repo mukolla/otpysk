@@ -57,9 +57,24 @@
 			}
 		}
 		
-		$date = $userdb->_get_user_db($_SESSION['user_id']);
-		$this->user=$date[0];
+		
+		//якщо прийшов запит показти сторінку користувача
+		if ($get['user_id']){
+				$date = $userdb->_get_user_db($get['user_id']);
+				$this->user=$date[0];
+				$this->onlyuser = true;
+		}else{
+		//якщо нічого не прийшло показуєм сторінку поточного юзера
+			$date = $userdb->_get_user_db($_SESSION['user_id']);
+			$this->user=$date[0];
+		}
+		
+
+		
+
+
 	 
+//		 http://otpysk/enter?user_id=10
 		 
 		 if ($get['deluser']){	
 				$this->deluser = $get['deluser'];
@@ -68,7 +83,7 @@
 
 		 if ($get['del_user_id']){
 		
-			 if (Lib_Proc::getInstance()->_get_user_rights($status = 'this_user',$news_id = null, $get['del_user_id'])){
+			 if (Lib_Proc::getInstance()->_get_user_rights($status = 'this_user',null,null, $get['del_user_id'])){
 					
 					$userdb->_del_user_db($get['del_user_id']);
 					 

@@ -39,8 +39,13 @@
 	  }
 	  
 	function _new_user_insert($s){
-			unset($value['repassword']); // deleted unclaimed variable
-			unset($value['adduser']);
+			unset($s['repassword']); // deleted unclaimed variable
+			unset($s['adduser']);
+			
+			if (!isset($s['img_avatar'])){
+			    $s['img_avatar'] = '';
+			}
+			
 			$s['reg_date']=date("m.d.Y g:i");
 			$s['password']=md5($s['password']);
 			$db = $this->connect();
@@ -57,9 +62,13 @@
 	
 	
 	function _del_user_db($value){
-			$db = $this->connect();
-			$result = $db->prepare("DELETE FROM user WHERE (`user_id`=:value)");
-		return $result->execute($value);	
+	
+	// print_r($value); exit;
+	     $db = $this->connect();
+	     $result = $db->prepare("DELETE FROM user WHERE user_id=:id");
+	    // $id['id'] = $value;
+	    $id['id']=$value;
+	return $result->execute($id);	
 	}
 
   }

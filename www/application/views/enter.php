@@ -12,15 +12,18 @@ if (!$_SESSION['user_name']){
 		<span><?=t('Реєстраційні данні введені не вірно!')?></span>
 		</div>
 	<?}
-}else{?>
+}else{
+	if(!isset($onlyuser)) 
+{?>				<!-- $onlyuser у випадку якщо, прийшли з сторінки коментів і дивляться профіль  -->
+
 <a href="/enter?out=1"><?=t("Змінити користувача:")?></a>&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;
 <a href="/admin?useredit=<?=$_SESSION['user_id']?>"><?=t("Редагувати дані користувача:")?></a>&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;
 <a href="/enter?deluser=<?=$_SESSION['user_id']?>"><?=t("Видалити профіль з сайту:")?></a>
 
-
+<?}?>
 <br/>
 <br/>
-
+<!-- показуєм дані користувача -->
 <div class = "admin_user_edit">
 <fieldset>
 <?foreach ($user as $key=>$value){?>
@@ -32,13 +35,9 @@ if (!$_SESSION['user_name']){
 </fieldset>
 </div>
 
-
-
 <br/>
 
 <?}?>
-
-
 <div class="msg_content_red">
 <span><?=$msg_user_add?></span>
 </div>

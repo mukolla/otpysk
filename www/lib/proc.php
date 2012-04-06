@@ -10,7 +10,7 @@
     }
 	
 	
-	public function _get_user_rights($rights='user',$news_id = null, $userdata=null){
+	public function _get_user_rights($rights='user',$type=null,$id = null, $userdata=null){
 		if ($_SESSION['auth']){
 			
 			if (!$userdata){
@@ -51,8 +51,14 @@
 
 						case 'edit':
 							if ($user_status == 0){return true;} // якщо адмін то ТРУ
-							if(!$news_id){echo 'В функцію необхідно передати (2-й) парметр news_id';exit;}
-							$sql = "select news_id, user_id from news where news.news_id = ".$news_id." and user_id = ".$user_id."";
+							if(!$id){echo 'В функцію необхідно передати (2-й) парметр news_id';exit;}
+								
+								if (!$type){
+									$sql = "select news_id, user_id from news where news.news_id = ".$id." and user_id = ".$user_id."";
+								}else{
+									$sql = "select * from comments where comment_id = ".$id." and user_id = ".$user_id."";
+								}
+							
 							$result = mysql_query($sql);
 							if (mysql_fetch_array($result)){
 								return true;

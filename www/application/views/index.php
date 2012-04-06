@@ -9,7 +9,7 @@ foreach($News as $item)
 			<div class = "news_user_name"><?=t('Автор:')?><span><?=$item['user_name']?></span> <?=t('Опубліковано:')?> <span><?=$item['date']?></span>
 
 
-<?if(Lib_Proc::getInstance()->_get_user_rights('edit',$item['news_id'])){?>
+<?if(Lib_Proc::getInstance()->_get_user_rights('edit',null,$item['news_id'])){?>
 
 
 &nbsp;&nbsp;&nbsp;

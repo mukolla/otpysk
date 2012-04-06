@@ -9,6 +9,40 @@ text-decoration: none;
 color:   #CC6600;
 }
 
+.block_comment A{
+text-decoration: underline ;
+color:   green;
+font-size: 80%
+}
+
+.comment_subject{
+color:   #CC3300;
+font-size: 95%
+}
+
+.comment_body{
+color:   #669999;
+font-size: 80%
+}
+
+.probel{
+margin-left: 100px;
+}
+
+
+
+.block_comment {
+
+}
+
+
+.form_comment input, .form_comment textarea{
+width: 600px;
+font: 14px Verdana;
+}
+
+
+
 A:hover { 
 	color: #009933;
 }

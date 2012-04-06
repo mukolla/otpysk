@@ -8,10 +8,10 @@
 		*/
 
  class Application_Models_Auth
-  {	  
-	  function ValidData($login,$pass){
-		$post = Lib_Proc::getInstance()->ClearArrayDate($_POST);
-			
+  {
+	
+	
+	function ValidData($login,$pass){			
 		$userdb = new Application_Models_userdb;
 	 	$user_data = $userdb->_get_all_user_db();
 
@@ -32,9 +32,9 @@
 			}
 		}
 		return true;
-	  }
+	}
 
-	  function NewUserValidData($username,$email){
+	function NewUserValidData($username,$email){
 		$userdb = new Application_Models_userdb;
 	 	$user_data = $userdb->_get_all_user_db();
 		foreach ($user_data as $row){
@@ -43,19 +43,18 @@
 				}
 		}
 		return false;
-	  }
+	}
 
-  	  function AddUser($value){
+  	function AddUser($value){
 		$value = Lib_Proc::getInstance()->ClearArrayDate($value);
 		
 		if (Lib_Proc::getInstance()->ValidateLoginDate($value)){
-						
-			$userdb = new Application_Models_userdb;
+			$userdb = new Application_Models_userdb;			
 			$user_data = $userdb->_new_user_insert($value);
 			$msg = 'Реєстраційні дані введені вірно!';
 		}else{
 			$msg = 'Реєстраційні дані введені не вірно';
 		}
 		return $msg;
-	  }
+	}
   } 
